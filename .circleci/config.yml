@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run: echo $CIRCLE_SHA1
 
-  agged-build:
+  tagged-build:
     executor: builder
     steps:
       - checkout
