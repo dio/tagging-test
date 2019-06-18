@@ -18,13 +18,7 @@ executors:
     working_directory: ~/test
 
 jobs:
-  untagged-build:
-    executor: builder
-    steps:
-      - checkout
-      - run: echo $CIRCLE_SHA1
-
-  tagged-build:
+  build:
     executor: builder
     steps:
       - checkout
