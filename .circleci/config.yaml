@@ -1,0 +1,32 @@
+version: 2.1
+
+workflows:
+  version: 2
+  untagged-build:
+    jobs:
+      - build
+  tagged-build:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+executors:
+  builder:
+    docker:
+      - image: node:12.4.0-alpine
+    working_directory: ~/test
+
+jobs:
+  untagged-build:
+    executor: builder
+    steps:
+      - checkout
+      - run: echo $CIRCLE_SHA1
+
+  agged-build:
+    executor: builder
+    steps:
+      - checkout
+      - run: echo $CIRCLE_SHA1
+      - run: echo $CIRCLE_TAG
